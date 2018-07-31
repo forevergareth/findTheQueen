@@ -18,11 +18,12 @@ public class GameServer {
         System.out.println("Waiting For clients.....");
         Socket Player1 = server.accept();
         clients[0] = Player1;
-        BufferedReader input;
-        PrintWriter output;
-        input = new BufferedReader(new InputStreamReader(Player1.getInputStream()));
-        output = new PrintWriter(Player1.getOutputStream(), true);
-        output.println("Enter username");
+//        To new Thread??
+//        BufferedReader input;
+//        PrintWriter output;
+//        input = new BufferedReader(new InputStreamReader(Player1.getInputStream()));
+//        output = new PrintWriter(Player1.getOutputStream(), true);
+//        output.println("Enter username");
 //        String username = input.readLine();
 //        if(username == "danniboi" || username == "matty7"){
 //

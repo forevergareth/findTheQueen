@@ -7,19 +7,32 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class GameClient {
+    int PORT;
+    Socket socket;
+    String hostname;
+
+    public GameClient(String hostname, int port){
+        this.PORT = port;
+        this.hostname = hostname;
+    }
+
+    public void play(){
+        try {
+            BufferedReader input;
+            PrintWriter output;
+
+            socket = new Socket(hostname, PORT);
+            input = new BufferedReader(new InputStreamReader(
+                    socket.getInputStream()));
+            output = new PrintWriter(socket.getOutputStream(), true);
+            System.out.println("Connected To server");
+        }catch(Exception e){
+            System.out.println("Error" + e);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
-        int PORT = 7621;
-        Socket socket;
-        BufferedReader input;
-        PrintWriter output;
-        socket = new Socket("127.0.0.1", PORT);
-
-
-        input = new BufferedReader(new InputStreamReader(
-                socket.getInputStream()));
-        output = new PrintWriter(socket.getOutputStream(), true);
-        System.out.println("Connected To server");
-        String choice = input.readLine();
+        GameClient client = new GameClient("127.0.0.1", 7621);
+        client.play();
     }
 }
